@@ -1,0 +1,31 @@
+{
+	"name": "repo-download",
+	"version": "0.0.1",
+	"description": "A tool to download git repository",
+	"main": "lib/index.js",
+	"scripts": {
+		"test": "cross-env NODE_ENV=dev && npm run lint && npm run mocha",
+		"lint": "eslint lib/*",
+		"bdd": "mocha test/test*.js --slow 2000"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mnichangxin/repo-download.git"
+	},
+	"keywords": [
+		"git",
+		"download"
+	],
+	"author": "lichangxin",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/mnichangxin/repo-download/issues"
+	},
+	"homepage": "https://github.com/mnichangxin/repo-download#readme",
+	"devDependencies": {
+		"chai": "^4.2.0",
+		"cross-env": "^5.2.0",
+		"eslint": "^5.8.0",
+		"mocha": "^5.2.0"
+	}
+}
