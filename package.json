@@ -4,7 +4,7 @@
 	"description": "A tool to download git repository",
 	"main": "lib/index.js",
 	"scripts": {
-		"test": "cross-env NODE_ENV=dev && npm run lint && npm run mocha",
+		"test": "cross-env NODE_ENV=test && npm run lint && npm run bdd",
 		"lint": "eslint lib/*",
 		"bdd": "mocha test/test*.js --slow 2000"
 	},
