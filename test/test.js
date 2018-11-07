@@ -7,7 +7,7 @@ const getOptions = require('../lib/core/option')
 const clone = require('../lib/core/clone')
 const down = require('../lib/core/down')
 
-describe('repo-download', () => {
+describe('test repo-download', () => {
     const OWNER_REPO_URL = 'mnichangxin/repo-download'
     const GITHUB_SSH_URL = 'git@github.com:mnichangxin/repo-download.git'
     const GITLAB_SSH_URL = 'git@gitlab.com:mnichangxin/repo-download.git'
@@ -16,7 +16,8 @@ describe('repo-download', () => {
     const OWNER_REPO_URL_CHECKOUT = 'mnichangxin/repo-download#dev'
     const GITHUB_SSH_URL_CHECKOUT = 'git@github.com:mnichangxin/repo-download#dev.git'
     const GITHUB_HTTPS_URL_CHECKOUT = 'https://github.com/mnichangxin/repo-download#dev.git'
-    describe('check git', () => {
+    const CUSTOM_URL = 'https://github.com/mnichangxin/repo-download.git#dev'
+    describe('test check git', () => {
         it('git is installed/uninstalled', (done) => {
             checkGit((err) => {
                 if (err) {
@@ -26,7 +27,7 @@ describe('repo-download', () => {
             })
         })
     })
-    describe('get options', () => {
+    describe('test get options', () => {
         const dist = process.cwd()
         let defaultOptions = {
             repo: GITHUB_SSH_URL,
@@ -85,5 +86,42 @@ describe('repo-download', () => {
                 checkout: 'dev'
             }))
         })
+        it('github ssh url has checkout', () => {
+            const options = getOptions(GITHUB_SSH_URL_CHECKOUT)
+            expect(options).to.eql(Object.assign(target, defaultOptions, {
+                repo: GITHUB_SSH_URL,
+                checkout: 'dev'
+            }))
+        })
+        it('github https url has checkout', () => {
+            const options = getOptions(GITHUB_HTTPS_URL_CHECKOUT)
+            expect(options).to.eql(Object.assign(target, defaultOptions, {
+                repo: GITHUB_SSH_URL,
+                checkout: 'dev'
+            }))
+        })
+        it('owner/repo ssh url has checkout, options type:https', () => {
+            const options = getOptions(OWNER_REPO_URL_CHECKOUT, {
+                type: 'https'
+            })
+            expect(options).to.eql(Object.assign(target, defaultOptions, {
+                repo: GITHUB_HTTPS_URL,
+                checkout: 'dev',
+                type: 'https'
+            }))
+        })
+        it('custom', () => {
+            const options = getOptions(CUSTOM_URL, {
+                custom: true
+            })
+            expect(options).to.eql(Object.assign(target, defaultOptions, {
+                repo: GITHUB_HTTPS_URL,
+                checkout: 'dev',
+                custom: true
+            }))
+        })
+    })
+    describe('test clone', () => {
+        
     })
 })
