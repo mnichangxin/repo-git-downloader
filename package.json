@@ -1,5 +1,5 @@
 {
-	"name": "repo-download",
+	"name": "repo-git-downloader",
 	"version": "0.0.1",
 	"description": "A tool to download git repository",
 	"main": "lib/index.js",
