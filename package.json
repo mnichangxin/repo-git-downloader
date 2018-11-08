@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "cross-env NODE_ENV=test && npm run lint && npm run bdd",
 		"lint": "eslint lib/*",
-		"bdd": "mocha test/test*.js --slow 2000"
+		"bdd": "mocha test/test*.js --timeout 10000"
 	},
 	"repository": {
 		"type": "git",

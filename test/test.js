@@ -9,6 +9,7 @@ const checkGit = require('../lib/util/check')
 const getOptions = require('../lib/core/option')
 const clone = require('../lib/core/clone')
 const down = require('../lib/core/down')
+const download = require('../lib/index')
 
 const OWNER_REPO_URL = 'mnichangxin/repo-download'
 const GITHUB_SSH_URL = 'git@github.com:mnichangxin/repo-download.git'
@@ -24,6 +25,7 @@ const GITHUB_DOWNLOAD_URL = 'https://github.com/mnichangxin/repo-download/archiv
 const GITLAB_DOWNLOAD_URL = 'https://gitlab.com/mnichangxin/repo-download/repository/archive.zip?ref=dev'
 const MOCK_CLONE_PATH = path.resolve(__dirname, 'mock-clone-path')
 const MOCK_DOWN_PATH = path.resolve(__dirname, 'mock-down-path')
+const MOCK_DOWNLOAD_PATH = path.resolve(__dirname, 'mock-download-path')
 
 describe('test repo-download', () => {
     describe('test check git', () => {
@@ -150,7 +152,7 @@ describe('test repo-download', () => {
             }))
         })
     })
-    describe.skip('test clone', function() {
+    describe.skip('test clone', () => {
         const mockClone = (repo, checkout, done) => {
             clone({
                 repo: repo,
@@ -165,7 +167,6 @@ describe('test repo-download', () => {
                 done()
             })
         }
-        this.timeout(10000)
         it('ssh clone', (done) => {
             mockClone(GITHUB_SSH_URL, '', done)
         })
@@ -182,7 +183,7 @@ describe('test repo-download', () => {
             rimraf.sync(`${MOCK_CLONE_PATH}/repo-download`)
         })
     })
-    describe('test down', function() {
+    describe('test down', () => {
         const mockDown = (repo, done) => {
             down({
                 repo: repo,
@@ -202,7 +203,6 @@ describe('test repo-download', () => {
                 }
             })
         }
-        this.timeout(10000)
         it('github down', (done) => {
             mockDown(GITHUB_DOWNLOAD_URL, done)
         })
@@ -211,6 +211,22 @@ describe('test repo-download', () => {
         })
         afterEach(() => {
             rimraf.sync(`${MOCK_DOWN_PATH}/*.zip`)
+        })
+    })
+    describe('test index', () => {
+        it('owner/repo url', (done) => {
+            process.chdir(MOCK_DOWNLOAD_PATH)
+            download(OWNER_REPO_URL, (err) => {
+                if (err) {
+                    done(err)
+                }
+                const isExists  = fs.existsSync(`${MOCK_DOWNLOAD_PATH}/repo-download`)
+                expect(isExists).to.be.true
+                done()
+            })
+        })
+        afterEach(() => {
+            rimraf.sync(`${MOCK_DOWNLOAD_PATH}/repo-download`)
         })
     })
 })
