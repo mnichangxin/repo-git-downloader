@@ -224,7 +224,7 @@ describe('test repo-download', () => {
                 expect(isExists).to.be.true
                 done()
             })
-        }) 
+        })
         it('has options', (done) => {
             download(OWNER_REPO_URL, {
                 dist: MOCK_DOWNLOAD_PATH
