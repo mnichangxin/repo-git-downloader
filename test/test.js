@@ -152,7 +152,7 @@ describe('test repo-download', () => {
             }))
         })
     })
-    describe.skip('test clone', () => {
+    describe('test clone', () => {
         const mockClone = (repo, checkout, done) => {
             clone({
                 repo: repo,
@@ -214,9 +214,21 @@ describe('test repo-download', () => {
         })
     })
     describe('test index', () => {
-        it('owner/repo url', (done) => {
+        it('no options', (done) => {
             process.chdir(MOCK_DOWNLOAD_PATH)
             download(OWNER_REPO_URL, (err) => {
+                if (err) {
+                    done(err)
+                }
+                const isExists = fs.existsSync(`${MOCK_DOWNLOAD_PATH}/repo-download`)
+                expect(isExists).to.be.true
+                done()
+            })
+        }) 
+        it('has options', (done) => {
+            download(OWNER_REPO_URL, {
+                dist: MOCK_DOWNLOAD_PATH
+            }, (err) => {
                 if (err) {
                     done(err)
                 }
