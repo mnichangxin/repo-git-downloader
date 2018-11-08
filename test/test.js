@@ -182,21 +182,35 @@ describe('test repo-download', () => {
             rimraf.sync(`${MOCK_CLONE_PATH}/repo-download`)
         })
     })
-    describe.skip('test down', function() {
-        this.timeout(10000)
-        it('github down', (done) => {
+    describe('test down', function() {
+        const mockDown = (repo, done) => {
             down({
-                repo: GITHUB_HTTPS_URL,
+                repo: repo,
                 dist: MOCK_DOWN_PATH
             }, (err) => {
                 if (err) {
                     done(err)
                 } else {
-                    const isExists = fs.existsSync(`${MOCK_DOWN_PATH}/*.zip`)
+                    let isExists = false
+                    fs.readdirSync(MOCK_DOWN_PATH).forEach((filename) => {
+                        if (/.*\.zip/.test(filename)) {
+                            isExists = true
+                        }
+                    })
                     expect(isExists).to.be.true
                     done()
                 }
             })
+        }
+        this.timeout(10000)
+        it('github down', (done) => {
+            mockDown(GITHUB_DOWNLOAD_URL, done)
+        })
+        it('gitlab down', (done) => {
+            mockDown(GITLAB_DOWNLOAD_URL, done)
+        })
+        afterEach(() => {
+            rimraf.sync(`${MOCK_DOWN_PATH}/*.zip`)
         })
     })
 })
