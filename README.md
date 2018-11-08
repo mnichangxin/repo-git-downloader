@@ -32,25 +32,29 @@ It identifies the repository link of git. Support the following types:
 
 ##### GitHub
 
-* owner/name: `mnichangxin/repo-git-downloader`
-* github:owner/name: `github:mnichangxin/repo-git-downloader`
-* git@github.com:owner/name.git: `git@github.com:mnichangxin/repo-git-downloader.git`
-* https://github.com/owner/name.git: `https://github.com/mnichangxin/repo-git-downloader.git`
+* `owner/name`
+* `github:owner/name`
+* `git@github.com:owner/name.git`
+* `https://github.com/owner/name.git`
 
 If you want to get a branch(dev, etc.) or tag(v1.0.0, etc.) from git repository:
 
-* owner/name#checkout: `mnichangxin/repo-git-downloader#dev`
-* github:owner/name#checkout: `github:mnichangxin/repo-git-downloader#dev`
-* git@github.com:owner/name#checkout.git: `git@github.com:mnichangxin/repo-git-downloader#dev.git`
-* https://github.com/owner#checkout/name.git: `https://github.com/mnichangxin/repo-git-downloader#dev.git`
+* `owner/name#checkout`
+* `github:owner/name#checkout`
+* `git@github.com:owner/name#checkout.git`
+* `https://github.com/owner#checkout/name.git`
 
 ##### GitLab
 
-* gitlab:owner/name: `gitlab:mnichangxin/repo-git-downloader`
-* git@gitlab.com:owner/name.git: `git@gitlab.com:mnichangxin/repo-git-downloader.git`
-* https://gitlab.com/owner/name.git: `https://gitlab.com/mnichangxin/repo-git-downloader.git`
+* `gitlab:owner/name`
+* `git@gitlab.com:owner/name.git`
+* `https://gitlab.com/owner/name.git`
 
 You also can get a branch(dev, etc.) or tag(v1.0.0, etc.) from git repository same as above.
+
+#### options
+
+#### callback
 
 ## Examples
 
