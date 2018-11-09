@@ -64,6 +64,8 @@ It identifies the download type of git. It provides 3 options:
 
 The `direct` option allow to download a `*.zip` file of respository.
 
+**Notes: If you use ssh, you must generate ssh ECDSA key at git repository**
+
 ##### dist
 
 It identifies the location of the download. Default is current directory(`./`). You can define absolute paths and relative paths.
@@ -86,6 +88,7 @@ The callback when download complete or throw a error. Having a parameter: `(err)
     download('mnichangxin/repo-git-downloader', (err) => {
         if (err) {
             // handle err
+            return
         }
         // handle done
     })
@@ -101,6 +104,7 @@ Although it is github `https` url, but using `type: ssh` to download by `ssh` ty
     }, (err) {
         if (err) {
             // handle err
+            return
         }
         // handle done
     })
@@ -108,12 +112,13 @@ Although it is github `https` url, but using `type: ssh` to download by `ssh` ty
 
 * checkout download:
 
-It will download `dev` branch of repository. 
+It will download `dev` branch of repository.
 
 ``` js
     download('mnichangxin/repo-git-downloader#dev', (err) => {
         if (err) {
             // handle err
+            return
         }
         // handle done
     })

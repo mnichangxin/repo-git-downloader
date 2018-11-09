@@ -11,23 +11,23 @@ const clone = require('../lib/core/clone')
 const down = require('../lib/core/down')
 const download = require('../lib/index')
 
-const OWNER_REPO_URL = 'mnichangxin/repo-download'
-const GITHUB_SSH_URL = 'git@github.com:mnichangxin/repo-download.git'
-const GITLAB_SSH_URL = 'git@gitlab.com:mnichangxin/repo-download.git'
-const GITHUB_HTTPS_URL = 'https://github.com/mnichangxin/repo-download.git'
-const GITLAB_HTTPS_URL = 'https://gitlab.com/mnichangxin/repo-download.git'
-const OWNER_REPO_URL_CHECKOUT = 'mnichangxin/repo-download#dev'
-const GITHUB_SSH_URL_CHECKOUT = 'git@github.com:mnichangxin/repo-download#dev.git'
-const GITHUB_HTTPS_URL_CHECKOUT = 'https://github.com/mnichangxin/repo-download#dev.git'
-const GITLAB_SSH_URL_CHECKOUT = 'git@gitlab.com:mnichangxin/repo-download#dev.git'
-const CUSTOM_URL = 'https://github.com/mnichangxin/repo-download.git#dev'
-const GITHUB_DOWNLOAD_URL = 'https://github.com/mnichangxin/repo-download/archive/dev.zip'
-const GITLAB_DOWNLOAD_URL = 'https://gitlab.com/mnichangxin/repo-download/repository/archive.zip?ref=dev'
+const OWNER_REPO_URL = 'mnichangxin/repo-git-downloader'
+const GITHUB_SSH_URL = 'git@github.com:mnichangxin/repo-git-downloader.git'
+const GITLAB_SSH_URL = 'git@gitlab.com:mnichangxin/repo-git-downloader.git'
+const GITHUB_HTTPS_URL = 'https://github.com/mnichangxin/repo-git-downloader.git'
+const GITLAB_HTTPS_URL = 'https://gitlab.com/mnichangxin/repo-git-downloader.git'
+const OWNER_REPO_URL_CHECKOUT = 'mnichangxin/repo-git-downloader#dev'
+const GITHUB_SSH_URL_CHECKOUT = 'git@github.com:mnichangxin/repo-git-downloader#dev.git'
+const GITHUB_HTTPS_URL_CHECKOUT = 'https://github.com/mnichangxin/repo-git-downloader#dev.git'
+const GITLAB_SSH_URL_CHECKOUT = 'git@gitlab.com:mnichangxin/repo-git-downloader#dev.git'
+const CUSTOM_URL = 'https://github.com/mnichangxin/repo-git-downloader.git#dev'
+const GITHUB_DOWNLOAD_URL = 'https://github.com/mnichangxin/repo-git-downloader/archive/dev.zip'
+const GITLAB_DOWNLOAD_URL = 'https://gitlab.com/mnichangxin/repo-git-downloader/repository/archive.zip?ref=dev'
 const MOCK_CLONE_PATH = path.resolve(__dirname, 'mock-clone-path')
 const MOCK_DOWN_PATH = path.resolve(__dirname, 'mock-down-path')
 const MOCK_DOWNLOAD_PATH = path.resolve(__dirname, 'mock-download-path')
 
-describe('test repo-download', () => {
+describe('test repo-git-downloader', () => {
     describe('test check git', () => {
         it('git is installed/uninstalled', (done) => {
             checkGit((err) => {
@@ -162,7 +162,7 @@ describe('test repo-download', () => {
                 if (err) {
                     done(err)
                 }
-                const isExists = fs.existsSync(`${MOCK_CLONE_PATH}/repo-download`)
+                const isExists = fs.existsSync(`${MOCK_CLONE_PATH}/repo-git-downloader`)
                 expect(isExists).to.be.true
                 done()
             })
@@ -180,7 +180,7 @@ describe('test repo-download', () => {
             mockClone(GITHUB_HTTPS_URL, 'dev', done)
         })
         afterEach(() => {
-            rimraf.sync(`${MOCK_CLONE_PATH}/repo-download`)
+            rimraf.sync(`${MOCK_CLONE_PATH}/repo-git-downloader`)
         })
     })
     describe('test down', () => {
@@ -220,7 +220,7 @@ describe('test repo-download', () => {
                 if (err) {
                     done(err)
                 }
-                const isExists = fs.existsSync(`${MOCK_DOWNLOAD_PATH}/repo-download`)
+                const isExists = fs.existsSync(`${MOCK_DOWNLOAD_PATH}/repo-git-downloader`)
                 expect(isExists).to.be.true
                 done()
             })
@@ -232,13 +232,13 @@ describe('test repo-download', () => {
                 if (err) {
                     done(err)
                 }
-                const isExists  = fs.existsSync(`${MOCK_DOWNLOAD_PATH}/repo-download`)
+                const isExists  = fs.existsSync(`${MOCK_DOWNLOAD_PATH}/repo-git-downloader`)
                 expect(isExists).to.be.true
                 done()
             })
         })
         afterEach(() => {
-            rimraf.sync(`${MOCK_DOWNLOAD_PATH}/repo-download`)
+            rimraf.sync(`${MOCK_DOWNLOAD_PATH}/repo-git-downloader`)
         })
     })
 })
