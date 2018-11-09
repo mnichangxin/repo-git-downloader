@@ -7,7 +7,7 @@ A tool to download git repository.
 ```sh
     npm install repo-git-downloader --save
     # OR
-    yarn add repo-git-downloader -save
+    yarn add repo-git-downloader --save
 ```
 
 ## API
